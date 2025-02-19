@@ -22,6 +22,13 @@ class Finding(models.Model):
     mitigate_before = models.DateField()
     scanner = models.ForeignKey(Scanner, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    class Severity_choices(models.IntegerChoices):
+        info = 0
+        low = 1
+        medium = 2
+        high = 3
+        critical = 4
+    severity = models.IntegerField(choices=Severity_choices)
 
     @property
     def mitigation_violated(self):
