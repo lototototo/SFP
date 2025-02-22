@@ -23,11 +23,11 @@ class Finding(models.Model):
     scanner = models.ForeignKey(Scanner, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     class SEVERITY_CHOICES(models.IntegerChoices):
-        info = 0
-        low = 1
-        medium = 2
-        high = 3
-        critical = 4
+        INFO = 0
+        LOW = 1
+        MEDIUM = 2
+        HIGH = 3
+        CRITICAL = 4
     severity = models.IntegerField(choices=SEVERITY_CHOICES)
 
     @property
