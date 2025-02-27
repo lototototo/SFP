@@ -1,17 +1,29 @@
+from itertools import product
+from logging import raiseExceptions
+
 from django.shortcuts import render
-from .models import Finding
-import json
+from django.forms import model_to_dict
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import generics, viewsets
 
+from MyApps.models import Scanner
+from MyApps.serializers import ScannerSerializer
 
-def import_json(request):
-    if request.method =='POST' and request.FILES['trufflehog3']:
-        json_file = request.FILES['trufflehog3']
-        data = json.load(json_file)
-        for item in data:
-            finding = Finding(
-                title = 7,
-                file_path = item['path'],
-                line_number = item['line'],
-                severity = item['rule']['severity']
-            )
-            finding.save()
+from MyApps.models import Product
+from MyApps.serializers import ProductSerializer
+
+from MyApps.models import Finding
+from MyApps.serializers import FindingSerializer
+
+class ScannerAPIView(viewsets.ModelViewSet):
+    queryset = Scanner.objects.all()
+    serializer_class = ScannerSerializer
+
+class ProductAPIView(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+class FindingAPIView(viewsets.ModelViewSet):
+    queryset = Finding.objects.all()
+    serializer_class = FindingSerializer
