@@ -1,4 +1,5 @@
 from rest_framework import serializers
+
 from MyApps.models import Scanner, Product, Finding
 
 class ScannerSerializer(serializers.ModelSerializer):

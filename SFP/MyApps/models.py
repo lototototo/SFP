@@ -16,18 +16,18 @@ class Product(models.Model):
         return self.title
 
 class Finding(models.Model):
-    class SEVERITY_CHOICES(models.IntegerChoices):
-        INFO = 0
-        LOW = 1
-        MEDIUM = 2
-        HIGH = 3
-        CRITICAL = 4
     title = models.CharField(max_length=20)
     line_number = models.IntegerField()
     file_path = models.CharField(max_length=20)
     mitigate_before = models.DateField()
     scanner = models.ForeignKey(Scanner, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    class SEVERITY_CHOICES(models.IntegerChoices):
+        INFO = 0
+        LOW = 1
+        MEDIUM = 2
+        HIGH = 3
+        CRITICAL = 4
     severity = models.IntegerField(choices=SEVERITY_CHOICES)
 
     @property
