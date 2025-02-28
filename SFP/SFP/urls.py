@@ -22,9 +22,9 @@ from rest_framework import routers
 
 
 router = routers.SimpleRouter()
-router.register(r'scanner', ScannerAPIView)
-router.register(r'product', ProductAPIView)
-router.register(r'finding', FindingAPIView)
+router.register(r'scanner', ScannerViewSet)
+router.register(r'product', ProductViewSet)
+router.register(r'finding', FindingViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
